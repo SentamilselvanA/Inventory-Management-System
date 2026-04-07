@@ -4,6 +4,29 @@
 
 @layer base {
   :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
     --card: 222 47% 11%;
@@ -23,7 +46,6 @@
     --border: 217 32% 17%;
     --input: 217 32% 17%;
     --ring: 224 71% 4%;
-    --radius: 0.5rem;
   }
 }
 
@@ -32,16 +54,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors duration-300;
     font-feature-settings: "rlig" 1, "calt" 1;
     background-image: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
   }
 }
 
 .glass-panel {
-  @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  @apply bg-white/50 dark:bg-white/5 backdrop-blur-lg border border-black/5 dark:border-white/10 shadow-xl;
 }
 
 .hover-glass:hover {
-  @apply bg-white/10 border-white/20 transition-all duration-300;
+  @apply bg-white/80 dark:bg-white/10 border-black/10 dark:border-white/20 transition-all duration-300;
 }

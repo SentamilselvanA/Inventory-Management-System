@@ -16,8 +16,8 @@ export default function Products({ user }) {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Products Master</h1>
-          <p className="text-gray-400">View and manage your product catalogue.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">Products Master</h1>
+          <p className="text-gray-600 dark:text-gray-400">View and manage your product catalogue.</p>
         </div>
         
         {canManageProducts && (
@@ -35,12 +35,12 @@ export default function Products({ user }) {
           <input 
             type="text" 
             placeholder="Search products by name or SKU..." 
-            className="w-full pl-10 pr-4 py-2.5 bg-black/20 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 bg-black/5 dark:bg-black/20 border border-black/10 dark:border-white/10 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all"
           />
         </div>
         
         <div className="flex gap-2 w-full sm:w-auto">
-          <select className="flex-1 sm:w-40 px-4 py-2.5 bg-black/20 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
+          <select className="flex-1 sm:w-40 px-4 py-2.5 bg-black/5 dark:bg-black/20 border border-black/10 dark:border-white/10 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary/50">
             <option value="">All Categories</option>
             <option value="Electronics">Electronics</option>
             <option value="Furniture">Furniture</option>
@@ -50,10 +50,10 @@ export default function Products({ user }) {
       </div>
 
       {/* Table */}
-      <div className="glass-panel rounded-2xl overflow-hidden overflow-x-auto border border-white/10">
+      <div className="glass-panel rounded-2xl overflow-hidden overflow-x-auto border border-black/10 dark:border-white/10">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-black/40 text-gray-400 text-sm font-medium border-b border-white/10">
+            <tr className="bg-black/5 dark:bg-black/40 text-gray-500 dark:text-gray-400 text-sm font-medium border-b border-black/10 dark:border-white/10">
               <th className="py-4 px-6">Product</th>
               <th className="py-4 px-6">SKU</th>
               <th className="py-4 px-6">Category</th>
@@ -63,19 +63,19 @@ export default function Products({ user }) {
               {canManageProducts && <th className="py-4 px-6 text-right">Actions</th>}
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5">
+          <tbody className="divide-y divide-black/5 dark:divide-white/5">
             {products.map((product) => (
-              <tr key={product.id} className="text-gray-300 hover:bg-white/5 transition-colors">
-                <td className="py-4 px-6 font-medium text-white">{product.name}</td>
+              <tr key={product.id} className="text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/5 transition-colors">
+                <td className="py-4 px-6 font-medium text-gray-900 dark:text-white">{product.name}</td>
                 <td className="py-4 px-6 font-mono text-sm">{product.sku}</td>
                 <td className="py-4 px-6">{product.category}</td>
                 <td className="py-4 px-6">{product.price}</td>
                 <td className="py-4 px-6 font-semibold">{product.stock}</td>
                 <td className="py-4 px-6">
                   <span className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium border
-                    ${product.status === 'In Stock' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
-                      product.status === 'Low Stock' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' : 
-                      'bg-red-500/10 text-red-400 border-red-500/20'}`}
+                    ${product.status === 'In Stock' ? 'bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20' : 
+                      product.status === 'Low Stock' ? 'bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/20' : 
+                      'bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/20'}`}
                   >
                     {product.status}
                   </span>
@@ -83,10 +83,10 @@ export default function Products({ user }) {
                 {canManageProducts && (
                   <td className="py-4 px-6 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors">
+                      <button className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-lg text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
                         <Edit2 className="w-4 h-4" />
                       </button>
-                      <button className="p-2 hover:bg-red-500/10 rounded-lg text-gray-400 hover:text-red-400 transition-colors">
+                      <button className="p-2 hover:bg-red-500/10 rounded-lg text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
