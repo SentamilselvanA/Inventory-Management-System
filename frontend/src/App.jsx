@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Products from "./pages/Products";
 import Inventory from "./pages/Inventory";
 import Users from "./pages/Users";
+import Suppliers from "./pages/Suppliers";
 
 function App() {
   const [user, setUser] = useState(null); // mock user state: { role: 'admin' | 'manager' | 'staff', name: 'John Doe' }
@@ -29,6 +30,7 @@ function App() {
           <Route index element={<Dashboard user={user} />} />
           <Route path="products" element={<Products user={user} />} />
           <Route path="inventory" element={<Inventory user={user} />} />
+          <Route path="suppliers" element={<Suppliers user={user} />} />
           {user?.role === 'admin' && (
             <Route path="users" element={<Users user={user} />} />
           )}
