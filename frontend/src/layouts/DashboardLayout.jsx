@@ -1,5 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { LayoutDashboard, Package, ArrowRightLeft, Users as UsersIcon, LogOut, Shield, Sun, Moon, ChevronLeft, Menu } from "lucide-react";
+import { LayoutDashboard, Package, ArrowRightLeft, Users as UsersIcon, LogOut, Shield, Sun, Moon, ChevronLeft, Menu, Truck } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function DashboardLayout({ user, setUser }) {
@@ -30,6 +30,7 @@ export default function DashboardLayout({ user, setUser }) {
     { name: "Dashboard", path: "/", icon: LayoutDashboard, roles: ["admin", "manager", "staff"] },
     { name: "Products", path: "/products", icon: Package, roles: ["admin", "manager", "staff"] },
     { name: "Inventory", path: "/inventory", icon: ArrowRightLeft, roles: ["admin", "manager", "staff"] },
+    { name: "Suppliers", path: "/suppliers", icon: Truck, roles: ["admin", "manager", "staff"] },
     { name: "Users", path: "/users", icon: UsersIcon, roles: ["admin"] },
   ];
 

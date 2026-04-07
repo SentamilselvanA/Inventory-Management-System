@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Shield, ArrowRight, UserCircle } from "lucide-react";
+import { Shield, ArrowRight, UserCircle, AlertCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({ setUser }) {
@@ -7,23 +7,32 @@ export default function Login({ setUser }) {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    // Mock login logic mapping emails to roles
-    let role = "staff";
-    let name = "Alex Staff";
-    
-    if (email.includes("admin")) {
-      role = "admin";
-      name = "Sarah Admin";
-    } else if (email.includes("manager")) {
-      role = "manager";
-      name = "Mike Manager";
-    }
+  const [error, setError] = useState("");
 
-    setUser({ role, name, email });
-    navigate("/");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      setUser({ role: data.role, name: data.name, email: data.email, id: data._id });
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   const setDemoCredentials = (role) => {
@@ -47,6 +56,12 @@ export default function Login({ setUser }) {
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">
+          {error && (
+            <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 px-4 py-3 rounded-xl text-sm animate-in fade-in slide-in-from-top-2 duration-300 shadow-sm shadow-red-500/10">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <p className="font-medium">{error}</p>
+            </div>
+          )}
           <div>
             <label className="block text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Email Address</label>
             <input
@@ -80,7 +95,7 @@ export default function Login({ setUser }) {
         </form>
 
         {/* Demo Section */}
-        <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
+        {/* <div className="mt-8 pt-6 border-t border-black/10 dark:border-white/10">
           <p className="text-xs text-center text-gray-500 font-medium mb-4 uppercase tracking-wider">Demo Access</p>
           <div className="flex justify-center gap-3">
             <button
@@ -102,7 +117,7 @@ export default function Login({ setUser }) {
               <UserCircle className="w-4 h-4" /> Staff
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
