@@ -1,9 +1,10 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Package, ArrowRightLeft, Users as UsersIcon, LogOut, Shield, Sun, Moon, ChevronLeft, Menu, Truck } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function DashboardLayout({ user, setUser }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDark, setIsDark] = useState(() => {
     // Check local storage or default to dark
@@ -24,6 +25,7 @@ export default function DashboardLayout({ user, setUser }) {
 
   const handleLogout = () => {
     setUser(null);
+    navigate("/login");
   };
 
   const navItems = [
