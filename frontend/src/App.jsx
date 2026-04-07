@@ -30,7 +30,9 @@ function App() {
           <Route index element={<Dashboard user={user} />} />
           <Route path="products" element={<Products user={user} />} />
           <Route path="inventory" element={<Inventory user={user} />} />
-          <Route path="suppliers" element={<Suppliers user={user} />} />
+          {user?.role !== 'staff' && (
+            <Route path="suppliers" element={<Suppliers user={user} />} />
+          )}
           {user?.role === 'admin' && (
             <Route path="users" element={<Users user={user} />} />
           )}

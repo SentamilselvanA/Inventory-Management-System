@@ -32,12 +32,14 @@ export default function Dashboard({ user }) {
       const lowStock = products.filter(p => p.stock < 20);
       
       setSuppliers(suppliersData);
-      setStats([
+      const dashboardStats = [
         { name: "Total Products", value: products.length, icon: Package, change: "", color: "text-blue-500 dark:text-blue-400" },
         { name: "Low Stock Items", value: lowStock.length, icon: AlertCircle, change: "", color: "text-red-500 dark:text-red-400" },
         { name: "Total Suppliers", value: suppliersData.length, icon: ShoppingCart, change: "", color: "text-purple-500 dark:text-purple-400" },
         { name: "Total Movements", value: inventory.length, icon: TrendingUp, change: "", color: "text-green-500 dark:text-green-400" },
-      ]);
+      ];
+
+      setStats(user?.role === 'staff' ? dashboardStats.filter(s => s.name !== "Total Suppliers") : dashboardStats);
 
       setRecentMovements(inventory.slice(0, 5));
       setLowStockProducts(lowStock.slice(0, 3));

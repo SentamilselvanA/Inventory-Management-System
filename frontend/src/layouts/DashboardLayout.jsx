@@ -30,7 +30,7 @@ export default function DashboardLayout({ user, setUser }) {
     { name: "Dashboard", path: "/", icon: LayoutDashboard, roles: ["admin", "manager", "staff"] },
     { name: "Products", path: "/products", icon: Package, roles: ["admin", "manager", "staff"] },
     { name: "Inventory", path: "/inventory", icon: ArrowRightLeft, roles: ["admin", "manager", "staff"] },
-    { name: "Suppliers", path: "/suppliers", icon: Truck, roles: ["admin", "manager", "staff"] },
+    { name: "Suppliers", path: "/suppliers", icon: Truck, roles: ["admin", "manager"] },
     { name: "Users", path: "/users", icon: UsersIcon, roles: ["admin"] },
   ];
 
